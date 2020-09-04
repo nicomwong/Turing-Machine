@@ -1,18 +1,31 @@
+#ifndef TM_H
+#define TM_H
+
 #include <vector>
+#include <unordered_set>
 
 #include "State.h"
 
 class TM
 {
-    public:
-        State* addState(std::string name, bool isAccepting); // add a state to the machine
+public:
+    TM();
 
-    private:
-        void next(); // perform next state transition and operation
-        void halt(bool accept); // halt machine; accept if accept==true, else reject
+    State* addState(std::string name, bool isAccepting); // Add the state to the machine
+    void addTransition(char readSym, char writeSym, Direction dir, State* nextState); // Add the transition to the state pointed to by currentState
 
-        std::vector<char> alpha;
-        State* start;
-        State* accept;
-        State* reject;
+    std::string run(std::string input); // Runs the TM on the input and returns the resulting tape string
+    bool accepts(std::string input); // Runs the TM on the input and returns whether it was accepted
+
+private:
+    void next(); // Perform the next state transition and corresponding operation
+    void halt(bool accept); // Halt the machine; accept iff accept==true
+
+    std::unordered_set<char> alpha;
+    State* startState;
+    State* acceptState;
+    State* rejectState;
+    State* currentState; // Tracks the current state in order to allow the transitions to be defined
 };
+
+#endif
