@@ -11,7 +11,7 @@ class TM
 public:
     TM();
 
-    State* addState(std::string name, bool isAccepting); // Add the state to the machine
+    State* addState(std::string name, StateType type); // Add the state to the machine
     void addTransition(char readSym, char writeSym, Direction dir, State* nextState); // Add the transition to the state pointed to by currentState
 
     std::string run(std::string input); // Runs the TM on the input and returns the resulting tape string
@@ -21,7 +21,6 @@ private:
     void next(); // Perform the next state transition and corresponding operation
     void halt(bool accept); // Halt the machine; accept iff accept==true
 
-    std::unordered_set<char> alpha;
     State* startState;
     State* acceptState;
     State* rejectState;
