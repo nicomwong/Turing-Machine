@@ -3,7 +3,7 @@
 
 #include "State.h"
 
-State::State(std::string name, bool isAccepting) : name(name), accepting(isAccepting)
+State::State(std::string name, StateType type) : name(name), type(type)
 {
 }
 
@@ -11,7 +11,7 @@ State::State(std::string name, bool isAccepting) : name(name), accepting(isAccep
 
 std::string State::getName()
 {
-    return name;
+    return this->name;
 }
 
 Transition* State::getTransition(char readSym)
@@ -30,7 +30,12 @@ Transition* State::getTransition(char readSym)
 
 bool State::isAccepting()
 {
-    return accepting;
+    return this->type == acceptState;
+}
+
+bool State::isRejecting()
+{
+    return this->type == rejectState;
 }
 
 /* Setter Member Functions */
