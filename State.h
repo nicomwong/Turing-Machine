@@ -1,18 +1,29 @@
+#ifndef STATE_H
+#define STATE_H
+
+#include <unordered_map>
+#include <string>
+
 #include "Transition.h"
 
 class State
 {
     public:
+        // Parameterized Constructor
+        State(std::string name, bool isAccepting);
+
         /* Getter Member Functions */
         std::string getName();
-        Transition* getTransition(char readSym); // retrieve transition and operation given a read symbol
-        bool isAccepting(); // returns true if this is an accepting state, else returns false
+        Transition* getTransition(char readSym);
+        bool isAccepting();
         
         /* Setter Member Functions */
-        void addTransition(char writeSymbol, direction dir, State* nextState); /* TO DO: make direction an enumator with proper syntax*/
+        void addTransition(char readSym, char writeSym, Direction dir, State* nextState);
 
     private:
         std::string name;
-        std::vector<Transition> trans;
+        std::unordered_map<char, Transition> transitions;
         bool accepting;
 };
+
+#endif
