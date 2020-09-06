@@ -8,9 +8,9 @@
 
 enum StateType
 {
-    normalState = 0,
-    acceptState = 1,
-    rejectState = 2
+    normalStateType = 0,
+    acceptStateType = 1,
+    rejectStateType = 2,
 };
 
 class State
