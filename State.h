@@ -21,6 +21,7 @@ public:
 
     /* Getter Member Functions */
     std::string getName();
+    StateType getType();
     Transition* getTransition(char readSym);
     bool isAccepting();
     bool isRejecting();
