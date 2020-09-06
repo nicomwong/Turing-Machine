@@ -121,4 +121,14 @@ bool TM:accepts(std::string input)
             i = 0;
         }
     }
+
+    if (type == acceptStateType)
+    {
+        return true;
+    }
+    
+    else // if (type == rejectStateType)
+    {
+        return false;
+    }
 }
