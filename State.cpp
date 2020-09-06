@@ -14,6 +14,11 @@ std::string State::getName()
     return this->name;
 }
 
+StateType State::getType()
+{
+    return this->type;
+}
+
 Transition* State::getTransition(char readSym)
 {
     if (transitions.find(readSym) == transitions.end())
