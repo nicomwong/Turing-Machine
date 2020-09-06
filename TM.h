@@ -21,8 +21,6 @@ private:
     void halt(bool accept); // Halt the machine; accept iff accept==true
 
     State* startState;
-    State* acceptState;
-    State* rejectState;
     State* currentState; // Tracks the current state in order to allow the transitions to be defined
 };
 
