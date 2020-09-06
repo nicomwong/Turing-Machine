@@ -35,12 +35,12 @@ Transition* State::getTransition(char readSym)
 
 bool State::isAccepting()
 {
-    return this->type == acceptState;
+    return this->type == acceptStateType;
 }
 
 bool State::isRejecting()
 {
-    return this->type == rejectState;
+    return this->type == rejectStateType;
 }
 
 /* Setter Member Functions */
