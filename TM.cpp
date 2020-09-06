@@ -34,7 +34,9 @@ std::string TM::run(std::string input)
     State *s = startState;
     int i = 0;
 
-    while (!(s == acceptState || s == rejectState))
+    StateType type = s->getType();
+
+    while (!(type == acceptStateType || type == rejectStateType))
     {
         char c = input.at(i);
 
