@@ -32,7 +32,7 @@ void TM::addTransition(char readSym, char writeSym, Direction dir, State* nextSt
 std::string TM::run(std::string input)
 {
     State *s = startState;
-    int i = 0;
+    int i = 0; // index for tape head
 
     if (s == nullptr)
     {
