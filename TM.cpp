@@ -11,6 +11,11 @@ State* TM::addState(std::string name, StateType type)
 {
     State* s = new State(name, type);
 
+    if (type == startStateType)
+    {
+        this->startState = s;
+    }
+
     currentState = s;
     return s;
 }

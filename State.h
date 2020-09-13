@@ -11,6 +11,7 @@ enum StateType
     normalStateType = 0,
     acceptStateType = 1,
     rejectStateType = 2,
+    startStateType = 3,
 };
 
 class State
