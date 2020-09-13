@@ -19,6 +19,8 @@ public:
 
     TM* getMachine(); // Returns a pointer to the TM that the parser currently holds
 private:
+    void printParseError(std::size_t pos, std::string descrip);
+
     TM* machine;
 
     std::unordered_map<std::string, State*> states;
