@@ -19,6 +19,8 @@ public:
 
     TM* getMachine(); // Returns a pointer to the TM that the parser currently holds
 private:
+    TM* machine;
+
     std::unordered_map<std::string, State*> states;
     std::unordered_set<char> alphabet;
 };
