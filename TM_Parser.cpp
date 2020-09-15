@@ -40,6 +40,7 @@ TM* TM_Parser::parse(std::string fileName)
                 const std::string& s = m.str(1);
                 if (s != "")
                 {
+                    // Append every 3rd char starting at the 1st to the alphabet set
                     for (int j = 1; j < s.size() - 1; j+= 3)
                     {
                         this->alphabet.insert(s.at(j)); // *** Need to test ***
