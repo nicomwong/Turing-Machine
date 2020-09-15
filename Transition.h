@@ -14,9 +14,9 @@ public:
     Transition(char writeSym, Direction direction, State* nextState);
 
     // Getter Member Functions
-    char getWrite();
-    Direction getDirection();
-    State* getNextState();
+    char getWrite() const;
+    Direction getDirection() const;
+    State* getNextState() const;
 
 private:
     char writeSym;
