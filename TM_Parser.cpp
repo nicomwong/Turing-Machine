@@ -144,18 +144,8 @@ TM* TM_Parser::parse(std::string fileName)
             return nullptr;
         }
 
-        State* state = nullptr;
-        /* TO DO: Abstract the next 10 lines into a function */
-        // Check if a state with this name was already created
-        // If so, get the pointer and set it
-        if (this->state_map.count(stateName) == 1)
-        {
-            state = state_map.at(stateName);
-        } else  // Else, create the state, set it, and add it to the map
-        {
-            state = machine->addState(stateName, StateType::normalStateType);
-            state_map.insert({stateName, state});
-        }
+        // Try to add the state
+        State* state = this->tryAddState(stateName);
 
         // Change the active parsable string to the remains
         line = m.suffix().str();
@@ -210,19 +200,8 @@ TM* TM_Parser::parse(std::string fileName)
             
             // Get the name of the next state from group 4
             std::string nextStateName = m.str(4);
-            State* nextState = nullptr;
-
-            /* TO DO: Abstract the next 10 lines into a function */
-            // Check if a state with this name was already created
-            // If so, get the pointer and set it
-            if (this->state_map.count(nextStateName) == 1)
-            {
-                nextState = state_map.at(nextStateName);
-            } else  // Else, create the state, set it, and add it to the map
-            {
-                nextState = machine->addState(nextStateName, StateType::normalStateType);
-                state_map.insert({nextStateName, nextState});
-            }
+            // Try to add the state
+            State* nextState = this->tryAddState(nextStateName);
 
             // Add the transition to the state
             state->addTransition(readSym, writeSym, dir, nextState);
@@ -233,6 +212,22 @@ TM* TM_Parser::parse(std::string fileName)
     }
 
     return this->machine;
+}
+
+State* TM_Parser::tryAddState(std::string stateName)
+{
+    State* statePtr = nullptr;
+    // Check if a state with this name was already created
+    // If so, get the pointer and set it
+    if (this->state_map.count(stateName) == 1)
+    {
+        statePtr = this->state_map.at(stateName);
+    } else  // Else, create the state, set it, and add it to the map
+    {
+        statePtr = this->machine->addState(stateName, StateType::normalStateType);
+        this->state_map.insert({stateName, statePtr});
+    }
+    return statePtr;
 }
 
 void TM_Parser::printParseError(std::size_t pos, std::string descrip)

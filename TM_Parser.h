@@ -16,6 +16,7 @@ public:
     TM* parse(std::string fileName);
 
 private:
+    State* tryAddState(std::string stateName);    // If no state exists with the given name stateName, create it; then, return a pointer to it regardless
     void printParseError(std::size_t pos, std::string descrip);
 
     TM* machine;
