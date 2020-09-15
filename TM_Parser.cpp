@@ -42,7 +42,7 @@ TM* TM_Parser::parse(std::string fileName)
                 std::regex_search(line, m, r);
 
                 // Get the {csv} alphabet list from group 1
-                const std::string& s = m.str(1);
+                std::string const& s = m.str(1);
                 if (s != "")
                 {
                     // Append every 3rd char starting at the 1st to the alphabet set
@@ -64,7 +64,7 @@ TM* TM_Parser::parse(std::string fileName)
                 std::regex_search(line, m, r);
 
                 // Get the start state name from group 1
-                const std::string& s = m.str(1);
+                std::string const& s = m.str(1);
                 if (s != "")
                 {
                     this->machine->addState(s, StateType::startStateType);
@@ -82,7 +82,7 @@ TM* TM_Parser::parse(std::string fileName)
                 std::regex_search(line, m, r);
 
                 // Get the accept state name from group 1
-                const std::string& s = m.str(1);
+                std::string const& s = m.str(1);
                 if (s != "")
                 {
                     this->machine->addState(s, StateType::acceptStateType);
@@ -100,7 +100,7 @@ TM* TM_Parser::parse(std::string fileName)
                 std::regex_search(line, m, r);
 
                 // Get the reject state name from group 1
-                const std::string& s = m.str(1);
+                std::string const& s = m.str(1);
                 if (s != "")
                 {
                     this->machine->addState(s, StateType::rejectStateType);
