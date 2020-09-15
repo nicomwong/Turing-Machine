@@ -9,17 +9,17 @@ Transition::Transition(char write, Direction dir, State* next) :
 }
 
 /* Getter Member Functions */
-char Transition::getWriteSym()
+char Transition::getWrite()
 {
-    return writeSym;
+    return this->writeSym;
 }
 
 Direction Transition::getDirection()
 {
-    return direction;
+    return this->direction;
 }
 
 State* Transition::getNextState()
 {
-    return nextState;
+    return this->nextState;
 }
