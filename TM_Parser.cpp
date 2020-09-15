@@ -166,9 +166,9 @@ TM* TM_Parser::parse(std::string fileName)
                 return nullptr;
             }
             
-            // Now, full match found implies groups 1-4 were found
+            /* Now, full match found implies groups 1-4 were found */
 
-            // Parse groups 1-4 in the transition match
+            /* Parse groups 1-4 in the transition match */
 
             // Get the read symbol from group 1
             char readSym = m.str(1).at(0);
