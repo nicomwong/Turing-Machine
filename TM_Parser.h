@@ -7,23 +7,20 @@
 
 #include "TM.h"
 
-// Currently, the TM_Parser class only supports holding one TM at a time
-
 class TM_Parser
 {
 public:
     // Parameterized constructor
     TM_Parser(std::string fileName);
 
-    void parse(std::string fileName);
+    TM* parse(std::string fileName);
 
-    TM* getMachine(); // Returns a pointer to the TM that the parser currently holds
 private:
     void printParseError(std::size_t pos, std::string descrip);
 
     TM* machine;
 
-    std::unordered_map<std::string, State*> states;
+    std::unordered_map<std::string, State*> state_map;
     std::unordered_set<char> alphabet;
 };
 
