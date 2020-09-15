@@ -9,6 +9,7 @@ class TM
 {
 public:
     TM();
+    ~TM();
 
     State* addState(std::string name, StateType type); // Add the state to the machine
     void addTransition(char readSym, char writeSym, Direction dir, State* nextState); // Add the transition to the state pointed to by currentState

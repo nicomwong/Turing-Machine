@@ -3,8 +3,13 @@
 
 #include "TM.h"
 
-TM::TM() : startState(nullptr), acceptState(nullptr), rejectState(nullptr), currentState(nullptr)
+TM::TM() : startState(nullptr), currentState(nullptr)
 {
+}
+
+TM::~TM()
+{
+    delete this->startState;
 }
 
 State* TM::addState(std::string name, StateType type)
@@ -53,7 +58,7 @@ std::string TM::run(std::string input)
         char c = input.at(i);
 
         Transition *trans = s->getTransition(c);
-        input[i] = trans->getWriteSym();        // Write the symbol to the tape
+        input[i] = trans->getWrite();        // Write the symbol to the tape
         trans->getDirection() == 0 ? i-- : i++; // Move the position i according to the transition function
         s = trans->getNextState();              // Switch to the next state
 
@@ -82,7 +87,7 @@ std::string TM::run(std::string input)
     return input;
 }
 
-bool TM:accepts(std::string input)
+bool TM::accepts(std::string input)
 {
     State* s = startState;
     int i = 0; // index for tape head
@@ -91,7 +96,7 @@ bool TM:accepts(std::string input)
     {
         // Check if start state is valid before dereferencing
         std::cout << "Error: startState is a nullptr" << std::endl;
-        return input;
+        return false;
     }
 
     StateType type = s->getType();
@@ -101,7 +106,7 @@ bool TM:accepts(std::string input)
         char c = input.at(i);
 
         Transition *trans = s->getTransition(c);
-        input[i] = trans->getWriteSym();        // Write the symbol to the tape
+        input.at(i) = trans->getWrite();        // Write the symbol to the tape
         trans->getDirection() == 0 ? i-- : i++; // Move the position i according to the transition function
         s = trans->getNextState();              // Switch to the next state
 
@@ -109,7 +114,7 @@ bool TM:accepts(std::string input)
         {
             // Check if current state is valid before deref.
             std::cout << "Error: a transition leads to a nullptr as its nextState" << std::endl;
-            return input;
+            return false;
         }
 
         type = s->getType();                    // Update current state type
