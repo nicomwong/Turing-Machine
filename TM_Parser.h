@@ -10,8 +10,8 @@
 class TM_Parser
 {
 public:
-    // Parameterized constructor
-    TM_Parser(std::string fileName);
+    TM_Parser(std::string fileName);    // Parameterized constructor
+    ~TM_Parser();                       // Destructor
 
     TM* parse(std::string fileName);
 

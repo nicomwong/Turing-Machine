@@ -12,6 +12,11 @@ TM_Parser::TM_Parser(std::string fileName)
     this->parse(fileName);
 }
 
+TM_Parser::~TM_Parser()
+{
+    delete this->machine;
+}
+
 TM* TM_Parser::parse(std::string fileName)
 {
     std::ifstream my_istream(fileName); // Open fileName in output stream
