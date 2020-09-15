@@ -32,7 +32,7 @@ public:
 
 private:
     std::string name;
-    std::unordered_map<char, Transition> transitions;
+    std::unordered_map<char, Transition> transition_map;
     StateType type;
 };
 

@@ -21,7 +21,7 @@ StateType State::getType()
 
 Transition* State::getTransition(char readSym)
 {
-    if (transitions.find(readSym) == transitions.end())
+    if (transition_map.find(readSym) == transition_map.end())
     {
         std::cout << "Error: no transition found for read symbol " << readSym << " in state " << this->name << "." << std::endl;
         return nullptr;
@@ -29,7 +29,7 @@ Transition* State::getTransition(char readSym)
 
     else
     {
-        return &transitions[readSym];
+        return &transition_map[readSym];
     }
 }
 
@@ -48,5 +48,5 @@ bool State::isRejecting()
 void State::addTransition(char readSym, char writeSym, Direction dir, State* nextState)
 {
     Transition t(writeSym, dir, nextState);
-    transitions[readSym] = t;
+    transition_map[readSym] = t;
 }
