@@ -10,6 +10,13 @@ TM::TM() : startState(nullptr), currentState(nullptr)
 TM::~TM()
 {
     delete this->startState;
+    /*  SCHEMATIC FOR RECURSIVE DESTRUCTOR
+     *  1. If this state is nullptr, then return
+     *  2. For each [read, t] : state_map, 
+     *      a. If t->nextState was traversed through to get here, then do nothing
+     *      b. Else, remember this state and recursively destruct t->nextState
+     *  3. Delete this state
+     */
 }
 
 State* TM::addState(std::string name, StateType type)
