@@ -47,10 +47,8 @@ TM* TM_Parser::parse(std::string fileName)
                     }
                 } else
                 {
-                    this->printParseError(my_istream.tellg(), "Failed to find list of alphabet chars");
-                    return nullptr;
+                    return this->printParseError(my_istream.tellg(), "Failed to find list of alphabet chars");
                 }
-                
             }
 
             // Line 2: Define the start state
@@ -68,7 +66,6 @@ TM* TM_Parser::parse(std::string fileName)
                 } else
                 {
                     this->printParseError(my_istream.tellg(), "Failed to find name of start state");
-                    return nullptr;
                 }
             }
 
@@ -87,7 +84,6 @@ TM* TM_Parser::parse(std::string fileName)
                 } else
                 {
                     this->printParseError(my_istream.tellg(), "Failed to find name of accept state");
-                    return nullptr;
                 }
             }
 
@@ -106,7 +102,6 @@ TM* TM_Parser::parse(std::string fileName)
                 } else
                 {
                     this->printParseError(my_istream.tellg(), "Failed to find name of reject state");
-                    return nullptr;
                 }
                 
             }
@@ -116,7 +111,6 @@ TM* TM_Parser::parse(std::string fileName)
         else
         {
             this->printParseError(my_istream.tellg(), "Failed to find line " + i);
-            return nullptr;
         }
     }
     
@@ -125,7 +119,6 @@ TM* TM_Parser::parse(std::string fileName)
     if (line != "")
     {
         this->printParseError(my_istream.tellg(), "Expected empty line");
-        return nullptr;
     }
 
     // Parse the remaining lines for state and transition definitions
@@ -141,7 +134,6 @@ TM* TM_Parser::parse(std::string fileName)
         if (stateName == "")
         {
             this->printParseError(my_istream.tellg(), "Expected a definition of the state name");
-            return nullptr;
         }
 
         // Try to add the state
@@ -163,7 +155,6 @@ TM* TM_Parser::parse(std::string fileName)
             if (m.size() == 0)
             {
                 this->printParseError(my_istream.tellg(), "Invalid transition definition syntax");
-                return nullptr;
             }
             
             /* Now, full match found implies groups 1-4 were found */
@@ -175,7 +166,6 @@ TM* TM_Parser::parse(std::string fileName)
             if (this->alphabet.count(readSym) == 0)
             {
                 this->printParseError(my_istream.tellg(), readSym + " is not a valid read symbol in the defined alphabet"); // ** maybe add a wya to print the defined alphabet?
-                return nullptr;
             }
 
             // Get the write symbol from group 2
@@ -183,7 +173,6 @@ TM* TM_Parser::parse(std::string fileName)
             if (this->alphabet.count(writeSym) == 0)
             {
                 this->printParseError(my_istream.tellg(), writeSym + " is not a valid write symbol in the defined alphabet"); // ** maybe add a wya to print the defined alphabet?
-                return nullptr;
             }
 
             // Get the direction from group 3
@@ -195,7 +184,6 @@ TM* TM_Parser::parse(std::string fileName)
             } else
             {
                 this->printParseError(my_istream.tellg(), dirChar + " is not a valid Direction {L, R}");
-                return nullptr;
             }
             
             // Get the name of the next state from group 4
@@ -230,7 +218,13 @@ State* TM_Parser::tryAddState(std::string stateName)
     return statePtr;
 }
 
-void TM_Parser::printParseError(std::size_t pos, std::string descrip)
+TM* TM_Parser::printParseError(std::size_t pos, std::string descrip)
 {
-    std::cerr << "Parse Error at position " << pos << ": " << descrip << "." << std::endl;
+    this->printError(pos, "Parse", descrip);
+    return nullptr;
+}
+
+void TM_Parser::printError(std::size_t pos, std::string type, std::string descrip)
+{
+    std::cerr << type << " Error at position " << pos << ": " << descrip << "." << std::endl;
 }
