@@ -19,30 +19,42 @@ TM::~TM()
      */
 }
 
-State* TM::addState(std::string name, StateType type)
+bool TM::addState(std::string stateName, StateType type)
 {
-    State* s = new State(name, type);
+    State* s = new State(stateName, type);
 
-    if (type == startStateType)
+    if (type == StateType::startStateType)
     {
         this->startState = s;
     }
 
-    currentState = s;
-    return s;
+    // If a state with name stateName exists, return false for failure
+    if (this->state_map.count(stateName) == true)
+    {
+        return false;
+    } else  // Else, insert the state and return true for success
+    {
+        this->state_map.insert({stateName, s});
+        return true;
+    }
 }
 
-void TM::addTransition(char readSym, char writeSym, Direction dir, State* nextState)
+bool TM::addTransition(std::string stateName, char readSym, char writeSym, Direction dir, std::string nextStateName)
 {
-    if (currentState != nullptr)
+    // If there is no state with name stateName, then print an error and stop
+    if (state_map.count(stateName) == false)
     {
-        currentState->addTransition(readSym, writeSym, dir, nextState);
+        std::cerr << "Error: No state with name '" << stateName << "' exists. Cannot create the transition" << std::endl;
+        return false;   // Return false for failure
     }
 
-    else
-    {
-        std::cout << "Error: Trying to add a transition but currentState == nullptr" << std::endl;
-    }
+    // Else, continue to define the transition
+    this->addState(nextStateName, StateType::normalStateType);  // Attempt to add the next state
+
+    State* const& s = this->state_map.at(stateName);
+    s->addTransition(readSym, writeSym, dir, this->state_map.at(nextStateName));    // Add the transition
+    
+    return true;    // Return true for success
 }
 
 // Run the TM on the input string and return the resulting tape output string

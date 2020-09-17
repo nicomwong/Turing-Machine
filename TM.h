@@ -11,8 +11,9 @@ public:
     TM();
     ~TM();
 
-    State* addState(std::string name, StateType type); // Add the state to the machine
-    void addTransition(char readSym, char writeSym, Direction dir, State* nextState); // Add the transition to the state pointed to by currentState
+    bool addState(std::string stateName, StateType stateType); // Add the state to the machine; returns false iff state with name stateName existed before
+    bool addTransition(std::string stateName, char readSym, char writeSym, Direction dir, std::string nextStateName); // Add the transition to the state pointed to by currentState; returns true iff transition was added successfully
+    /* In the future, the two above functions (or just addTransition())) will use exceptions instead of returning bool */
 
     std::string run(std::string input); // Runs the TM on the input and returns the resulting tape string
     bool accepts(std::string input); // Runs the TM on the input and returns whether it was accepted
@@ -22,7 +23,7 @@ private:
     void halt(bool accept); // Halt the machine; accept iff accept==true
 
     State* startState;
-    State* currentState; // Tracks the current state in order to allow the transitions to be defined
+    std::unordered_map<std::string, State*> state_map;  // Maps state name to State*
 };
 
 #endif
