@@ -19,7 +19,7 @@ TM_Parser::~TM_Parser()
 
 TM* TM_Parser::parse(std::string fileName)
 {
-    std::ifstream my_istream(fileName); // Open fileName in output stream
+    std::ifstream my_istream(fileName); // Open fileName in input stream
 
     if (my_istream.is_open() == false)
     {
@@ -70,7 +70,7 @@ TM* TM_Parser::parse(std::string fileName)
                     this->machine->addState(s, StateType::startStateType);
                 } else
                 {
-                    this->printParseError(my_istream.tellg(), "Failed to find name of start state");
+                    return this->printParseError(my_istream.tellg(), "Failed to find name of start state");
                 }
             }
 
@@ -83,12 +83,14 @@ TM* TM_Parser::parse(std::string fileName)
 
                 // Get the accept state name from group 1
                 std::string const& s = m.str(1);
+
+                // If the regex matched, then try to add the state
                 if (s != "")
                 {
                     this->machine->addState(s, StateType::acceptStateType);
-                } else
+                } else  // Else, print a parse error
                 {
-                    this->printParseError(my_istream.tellg(), "Failed to find name of accept state");
+                    return this->printParseError(my_istream.tellg(), "Failed to find name of accept state");
                 }
             }
 
@@ -101,21 +103,25 @@ TM* TM_Parser::parse(std::string fileName)
 
                 // Get the reject state name from group 1
                 std::string const& s = m.str(1);
+                // If the regex matched, then try to add the state
                 if (s != "")
                 {
-                    this->machine->addState(s, StateType::rejectStateType);
-                } else
+                    // Try to add the state. If it fails, then print an error that the accept state name was already taken and stop
+                    if (this->machine->addState(s, StateType::rejectStateType) == false)
+                    {
+                        return this->printParseError(my_istream.tellg(), "Failed to set reject state name to " + s + "; name already taken");
+                    }
+                } else  // Else, print a parse error
                 {
-                    this->printParseError(my_istream.tellg(), "Failed to find name of reject state");
+                    return this->printParseError(my_istream.tellg(), "Failed to find name of reject state");
                 }
-                
             }
         }
 
-        // If no line found, print parse error
+        // Else (if no line found with getline), print parse error
         else
         {
-            this->printParseError(my_istream.tellg(), "Failed to find line " + i);
+            return this->printParseError(my_istream.tellg(), "Failed to find line " + i);
         }
     }
     
@@ -123,7 +129,7 @@ TM* TM_Parser::parse(std::string fileName)
     std::getline(my_istream, line);
     if (line != "")
     {
-        this->printParseError(my_istream.tellg(), "Expected empty line");
+        return this->printParseError(my_istream.tellg(), "Expected empty line");
     }
 
     // Parse the remaining lines for state and transition definitions
@@ -138,11 +144,11 @@ TM* TM_Parser::parse(std::string fileName)
         // Check if a state name is found
         if (stateName == "")
         {
-            this->printParseError(my_istream.tellg(), "Expected a definition of the state name");
+            return this->printParseError(my_istream.tellg(), "Expected a definition of the state name");
         }
 
-        // Try to add the state
-        State* state = this->tryAddState(stateName);
+        // Add the state if it does not already exist
+        this->machine->addState(stateName, StateType::normalStateType);
 
         // Change the active parsable string to the remains
         line = m.suffix().str();
@@ -150,7 +156,7 @@ TM* TM_Parser::parse(std::string fileName)
         // Find the transition definition groups
         std::regex r_trans(" \\((\\w) -> (\\w), ([LR]), (\\w++)\\)");
         std::sregex_iterator rit(line.begin(), line.end(), r_trans);
-        std::sregex_iterator rend; // Represents end_of_sequence iterator
+        std::sregex_iterator rend; // Initializes as end_of_sequence iterator
 
         while (rit != rend)
         {
@@ -159,10 +165,10 @@ TM* TM_Parser::parse(std::string fileName)
             // If no match found, then print a parse error
             if (m.size() == 0)
             {
-                this->printParseError(my_istream.tellg(), "Invalid transition definition syntax");
+                return this->printParseError(my_istream.tellg(), "Invalid transition definition syntax");
             }
             
-            /* Now, full match found implies groups 1-4 were found */
+            /* Now, full match found implies that groups 1-4 were found */
 
             /* Parse groups 1-4 in the transition match */
 
@@ -170,14 +176,14 @@ TM* TM_Parser::parse(std::string fileName)
             char readSym = m.str(1).at(0);
             if (this->alphabet.count(readSym) == 0)
             {
-                this->printParseError(my_istream.tellg(), readSym + " is not a valid read symbol in the defined alphabet"); // ** maybe add a wya to print the defined alphabet?
+                return this->printParseError(my_istream.tellg(), readSym + " is not a valid read symbol in the defined alphabet"); // ** maybe add a wya to print the defined alphabet?
             }
 
             // Get the write symbol from group 2
             char writeSym = m.str(2).at(0);
             if (this->alphabet.count(writeSym) == 0)
             {
-                this->printParseError(my_istream.tellg(), writeSym + " is not a valid write symbol in the defined alphabet"); // ** maybe add a wya to print the defined alphabet?
+                return this->printParseError(my_istream.tellg(), writeSym + " is not a valid write symbol in the defined alphabet"); // ** maybe add a wya to print the defined alphabet?
             }
 
             // Get the direction from group 3
@@ -188,39 +194,22 @@ TM* TM_Parser::parse(std::string fileName)
                 dir = dirChar == 'L' ? Direction::dirL : Direction::dirR;
             } else
             {
-                this->printParseError(my_istream.tellg(), dirChar + " is not a valid Direction {L, R}");
+                return this->printParseError(my_istream.tellg(), dirChar + " is not a valid Direction {L, R}");
             }
             
             // Get the name of the next state from group 4
             std::string nextStateName = m.str(4);
-            // Try to add the state
-            State* nextState = this->tryAddState(nextStateName);
 
             // Add the transition to the state
-            state->addTransition(readSym, writeSym, dir, nextState);
+            this->machine->addTransition(stateName, readSym, writeSym, dir, nextStateName);
 
             // Increment regex iterator
             rit++;
         }
     }
 
+    // If this is reached, then no errors occurred. Return the machine
     return this->machine;
-}
-
-State* TM_Parser::tryAddState(std::string stateName)
-{
-    State* statePtr = nullptr;
-    // Check if a state with this name was already created
-    // If so, get the pointer and set it
-    if (this->state_map.count(stateName) == 1)
-    {
-        statePtr = this->state_map.at(stateName);
-    } else  // Else, create the state, set it, and add it to the map
-    {
-        statePtr = this->machine->addState(stateName, StateType::normalStateType);
-        this->state_map.insert({stateName, statePtr});
-    }
-    return statePtr;
 }
 
 TM* TM_Parser::printParseError(std::size_t pos, std::string descrip)
