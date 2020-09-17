@@ -3,7 +3,7 @@
 
 #include "TM.h"
 
-TM::TM() : startState(nullptr), currentState(nullptr)
+TM::TM() : startState(nullptr)
 {
 }
 
