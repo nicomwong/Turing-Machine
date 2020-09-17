@@ -15,6 +15,8 @@ public:
 
     TM* parse(std::string fileName);
 
+    TM* getMachine();
+
 private:
     TM* printParseError(std::size_t pos, std::string descrip);
     void printError(std::size_t pos, std::string type, std::string descrip);

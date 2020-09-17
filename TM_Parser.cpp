@@ -212,6 +212,11 @@ TM* TM_Parser::parse(std::string fileName)
     return this->machine;
 }
 
+TM* TM_Parser::getMachine()
+{
+    return this->machine;
+}
+
 TM* TM_Parser::printParseError(std::size_t pos, std::string descrip)
 {
     this->printError(pos, "Parse", descrip);
