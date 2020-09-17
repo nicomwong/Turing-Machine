@@ -7,6 +7,8 @@ enum Direction
     dirR = 1
 };
 
+class State; // forward declaration
+
 class Transition
 {
 public:
@@ -23,7 +25,5 @@ private:
     Direction direction;
     State* nextState;
 };
-
-class State; // forward declaration
 
 #endif
