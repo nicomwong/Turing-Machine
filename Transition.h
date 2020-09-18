@@ -13,17 +13,17 @@ class Transition
 {
 public:
     // Parameterized Constructor
-    Transition(char writeSym, Direction direction, State* nextState);
+    Transition(char writeSym, Direction direction, std::string nextStateName);
 
     // Getter Member Functions
     char getWrite() const;
     Direction getDirection() const;
-    State* getNextState() const;
+    std::string getNextState() const;
 
 private:
     char writeSym;
     Direction direction;
-    State* nextState;
+    std::string nextStateName;
 };
 
 #endif

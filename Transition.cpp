@@ -1,10 +1,12 @@
 // Transition.cpp
 
+#include <string>
+
 #include "Transition.h"
 
 /* Parameterized Constructor */
-Transition::Transition(char write, Direction dir, State* next) :
-    writeSym(write), direction(dir), nextState(next)
+Transition::Transition(char write, Direction dir, std::string next) :
+    writeSym(write), direction(dir), nextStateName(next)
 {
 }
 
@@ -19,7 +21,7 @@ Direction Transition::getDirection() const
     return this->direction;
 }
 
-State* Transition::getNextState() const
+std::string Transition::getNextState() const
 {
-    return this->nextState;
+    return this->nextStateName;
 }
