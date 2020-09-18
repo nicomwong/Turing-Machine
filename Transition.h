@@ -12,13 +12,15 @@ class State; // forward declaration
 class Transition
 {
 public:
-    // Parameterized Constructor
-    Transition(char writeSym, Direction direction, std::string nextStateName);
+    Transition(char writeSym, Direction direction, std::string nextStateName);  // Parameterized Constructor
 
-    // Getter Member Functions
+    /* Getter Member Functions */
     char getWrite() const;
     Direction getDirection() const;
     std::string getNextState() const;
+
+    /* Overloaded Operators */
+    bool operator==(Transition const& other);
 
 private:
     char writeSym;

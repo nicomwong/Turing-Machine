@@ -1,5 +1,4 @@
 // Transition.cpp
-
 #include <string>
 
 #include "Transition.h"
@@ -24,4 +23,12 @@ Direction Transition::getDirection() const
 std::string Transition::getNextState() const
 {
     return this->nextStateName;
+}
+
+/* Overloaded Operators */
+bool Transition::operator==(Transition const& other)
+{
+    return  this->writeSym      ==  other.writeSym  &&
+            this->direction     ==  other.direction &&
+            this->nextStateName ==  other.nextStateName ;
 }
