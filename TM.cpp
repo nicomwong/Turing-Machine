@@ -48,7 +48,7 @@ bool TM::addTransition(std::string stateName, char readSym, char writeSym, Direc
     this->addState(nextStateName, StateType::normalStateType);  // Attempt to add the next state
 
     State* const& s = this->state_map.at(stateName);
-    s->addTransition(readSym, writeSym, dir, this->state_map.at(nextStateName));    // Add the transition
+    s->addTransition(readSym, writeSym, dir, nextStateName);    // Add the transition
     
     return true;    // Return true for success
 }
@@ -75,7 +75,7 @@ std::string TM::run(std::string input)
         Transition *trans = s->getTransition(c);
         input[i] = trans->getWrite();        // Write the symbol to the tape
         trans->getDirection() == 0 ? i-- : i++; // Move the position i according to the transition function
-        s = trans->getNextState();              // Switch to the next state
+        s = this->state_map.at(trans->getNextState()); // Switch to the next state
 
         if (s == nullptr)
         {
@@ -123,7 +123,7 @@ bool TM::accepts(std::string input)
         Transition *trans = s->getTransition(c);
         input.at(i) = trans->getWrite();        // Write the symbol to the tape
         trans->getDirection() == 0 ? i-- : i++; // Move the position i according to the transition function
-        s = trans->getNextState();              // Switch to the next state
+        s = this->state_map.at(trans->getNextState());              // Switch to the next state
 
         if (s == nullptr)
         {
