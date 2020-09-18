@@ -20,6 +20,9 @@ public:
     std::string run(std::string input); // Runs the TM on the input and returns the resulting tape string
     bool accepts(std::string input); // Runs the TM on the input and returns whether it was accepted
 
+    /* Overloaded Operators */
+    bool operator==(TM const& rhs);
+
 private:
     void next(); // Perform the next state transition and corresponding operation
     void halt(bool accept); // Halt the machine; accept iff accept==true

@@ -157,3 +157,21 @@ bool TM::accepts(std::string input)
         return false;
     }
 }
+
+bool TM::operator==(TM const& rhs)
+{
+    if (this->state_map.size() != rhs.state_map.size())
+    {
+        return false;
+    }
+
+    for (auto const& [stateName, statePtr] : this->state_map)
+    {
+        if (rhs.state_map.count(stateName) == false || *statePtr == *rhs.state_map.at(stateName))
+        {
+            return false;
+        }
+    }
+
+    return true;
+}
