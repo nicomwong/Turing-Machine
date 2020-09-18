@@ -19,7 +19,7 @@ StateType State::getType()
     return this->type;
 }
 
-Transition* State::getTransition(char readSym)
+Transition *State::getTransition(char readSym)
 {
     if (transition_map.find(readSym) == transition_map.end())
     {
@@ -45,8 +45,15 @@ bool State::isRejecting()
 
 /* Setter Member Functions */
 
-void State::addTransition(char readSym, char writeSym, Direction dir, State* nextState)
+void State::addTransition(char readSym, char writeSym, Direction dir, std::string nextStateName)
 {
-    Transition t(writeSym, dir, nextState);
+    Transition t(writeSym, dir, nextStateName);
     transition_map[readSym] = t;
+}
+
+bool State::operator==(State const &other)
+{
+    return this->name           ==  other.name              &&
+           this->transition_map ==  other.transition_map    &&
+           this->type           ==  other.type  ;
 }

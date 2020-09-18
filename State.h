@@ -17,19 +17,21 @@ enum StateType
 class State
 {
 public:
-    // Parameterized Constructor
-    State(std::string name, StateType type);
+    State(std::string name, StateType type); // Parameterized Constructor
 
     /* Getter Member Functions */
     std::string getName();
     StateType getType();
-    Transition* getTransition(char readSym);
-    
+    Transition *getTransition(char readSym);
+
     bool isAccepting();
     bool isRejecting();
 
     /* Setter Member Functions */
-    void addTransition(char readSym, char writeSym, Direction dir, State* nextState);
+    void addTransition(char readSym, char writeSym, Direction dir, std::string nextStateName);
+
+    /* Overloaded Operators */
+    bool operator==(State const &other);
 
 private:
     std::string name;
