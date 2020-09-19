@@ -25,9 +25,14 @@ std::string Transition::getNextState() const
 }
 
 /* Overloaded Operators */
-bool Transition::operator==(Transition const& other)
+bool Transition::operator==(Transition const& other) const
 {
     return  this->writeSym      ==  other.writeSym  &&
             this->direction     ==  other.direction &&
             this->nextStateName ==  other.nextStateName ;
+}
+
+std::ostream& operator<<(std::ostream& strm, Transition const& trans)
+{
+    return strm << "(read -> " << trans.writeSym << ", " << trans.direction << ", " << trans.nextStateName;
 }
