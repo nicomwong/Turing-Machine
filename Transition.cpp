@@ -1,5 +1,4 @@
 // Transition.cpp
-#include <string>
 
 #include "Transition.h"
 
