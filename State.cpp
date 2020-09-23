@@ -57,3 +57,13 @@ bool State::operator==(State const &other)
            this->transition_map ==  other.transition_map    &&
            this->type           ==  other.type  ;
 }
+
+std::ostream& operator<<(std::ostream& strm, State const& state)
+{
+    strm << "State Name: " <<  state.name << "\n" << "State Type: " << state.type << "\n"
+    for (auto const& [key, trans] : transition_map)
+    {
+      strm << "\t" << trans << "\n";
+    }
+    return strm
+}

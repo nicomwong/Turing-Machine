@@ -49,7 +49,7 @@ bool TM::addTransition(std::string stateName, char readSym, char writeSym, Direc
 
     State* const& s = this->state_map.at(stateName);
     s->addTransition(readSym, writeSym, dir, nextStateName);    // Add the transition
-    
+
     return true;    // Return true for success
 }
 
@@ -151,7 +151,7 @@ bool TM::accepts(std::string input)
     {
         return true;
     }
-    
+
     else // if (type == rejectStateType)
     {
         return false;
@@ -174,4 +174,17 @@ bool TM::operator==(TM const& rhs)
     }
 
     return true;
+}
+
+friend std::ostream& operator<<(std::ostream& strm, TM const& tm)
+{
+    strm << "Start State: " << *tm.startState.getName() << "\n"
+    for (auto const& [key1, state] : state_map)
+    {
+      strm << "\t" << "State Name: " <<  state.name << "\n" << "\t" << "State Type: " << state.type << "\n"
+      for (auto const& [key2, trans] : *state.trans_map)
+      {
+        strm << "\t\t" << trans << "\n";
+      }
+    }
 }

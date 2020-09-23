@@ -33,6 +33,8 @@ public:
     /* Overloaded Operators */
     bool operator==(State const &other);
 
+    friend std::ostream& operator<<(std::ostream& strm, State const& state);
+
 private:
     std::string name;
     std::unordered_map<char, Transition> transition_map;
