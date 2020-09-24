@@ -17,6 +17,14 @@ std::string State::getName()
 StateType State::getType()
 {
     return this->type;
+}   
+
+std::string State::getStringType() 
+{  
+    if (this->type == 0) {return "normal"}   
+    else if (this->type == 1) {return "acccept"}  
+    else if (this->type == 2) {return "reject"}  
+    else if (this->type == 3) {return "start"}  
 }
 
 Transition *State::getTransition(char readSym)
