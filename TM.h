@@ -23,6 +23,8 @@ public:
     /* Overloaded Operators */
     bool operator==(TM const& rhs);
 
+    friend std::ostream& operator<<(std::ostream& strm, TM const& tm);
+
 private:
     void next(); // Perform the next state transition and corresponding operation
     void halt(bool accept); // Halt the machine; accept iff accept==true
