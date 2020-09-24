@@ -181,7 +181,7 @@ friend std::ostream& operator<<(std::ostream& strm, TM const& tm)
     strm << "Start State: " << *tm.startState.getName() << "\n"
     for (auto const& [key1, state] : state_map)
     {
-      strm << "\t" << "State Name: " <<  state.name << "\n" << "\t" << "State Type: " << state.type << "\n"
+      strm << "\t" << "State Name: " <<  state.getName() << "\n" << "\t" << "State Type: " << state.getType() << "\n"
       for (auto const& [key2, trans] : *state.trans_map)
       {
         strm << "\t\t" << trans << "\n";
