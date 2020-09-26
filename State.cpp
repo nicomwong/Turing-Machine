@@ -47,7 +47,7 @@ bool State::isRejecting()
 
 void State::addTransition(char readSym, char writeSym, Direction dir, std::string nextStateName)
 {
-    Transition t(writeSym, dir, nextStateName);
+    Transition t(readSym, writeSym, dir, nextStateName);
     transition_map[readSym] = t;
 }
 
