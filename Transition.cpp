@@ -1,5 +1,8 @@
 // Transition.cpp
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 #include "Transition.h"
 
 /* Parameterized Constructor */
