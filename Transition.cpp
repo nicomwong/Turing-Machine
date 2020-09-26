@@ -6,12 +6,17 @@
 #include "Transition.h"
 
 /* Parameterized Constructor */
-Transition::Transition(char write, Direction dir, std::string next) :
-    writeSym(write), direction(dir), nextStateName(next)
+Transition::Transition(char read, char write, Direction dir, std::string next) :
+    readSym(read), writeSym(write), direction(dir), nextStateName(next)
 {
 }
 
 /* Getter Member Functions */
+char Transition::getRead() const
+{
+    return this->readSym;
+}
+
 char Transition::getWrite() const
 {
     return this->writeSym;

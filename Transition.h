@@ -22,9 +22,10 @@ class State; // forward declaration
 class Transition
 {
 public:
-    Transition(char writeSym, Direction direction, std::string nextStateName);  // Parameterized Constructor
+    Transition(char readSym, char writeSym, Direction direction, std::string nextStateName);  // Parameterized Constructor
 
     /* Getter Member Functions */
+    char getRead() const;
     char getWrite() const;
     Direction getDirection() const;
     std::string getNextState() const;
@@ -35,6 +36,7 @@ public:
     friend std::ostream& operator<<(std::ostream& strm, Transition const& trans);
     
 private:
+    char readSym;
     char writeSym;
     Direction direction;
     std::string nextStateName;
