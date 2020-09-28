@@ -68,10 +68,11 @@ bool State::operator==(State const &other) const
 
 std::ostream& operator<<(std::ostream& strm, State const& state)
 {
-    strm << "State Name: " <<  state.name << "\n" << "State Type: " << state.getStringType() << "\n";
+    strm << "State Name: " << state.name << std::endl <<
+            "State Type: " << state.getStringType() << std::endl;
     for (auto const& [readSym, trans] : state.transition_map)
     {
-      strm << "\t" << trans << "\n";
+      strm << "\t" << trans << std::endl;
     }
     return strm;
 }
