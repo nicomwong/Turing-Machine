@@ -21,7 +21,8 @@ public:
 
     /* Getter Member Functions */
     std::string getName();
-    StateType getType();
+    StateType getType();  
+    std::string getStringType();
     Transition *getTransition(char readSym);
 
     bool isAccepting();
@@ -32,6 +33,8 @@ public:
 
     /* Overloaded Operators */
     bool operator==(State const &other);
+
+    friend std::ostream& operator<<(std::ostream& strm, State const& state);
 
 private:
     std::string name;

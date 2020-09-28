@@ -17,6 +17,14 @@ std::string State::getName()
 StateType State::getType()
 {
     return this->type;
+}   
+
+std::string State::getStringType() 
+{  
+    if (this->type == 0) return "normal"; 
+    else if (this->type == 1) return "accept";  
+    else if (this->type == 2) return "reject";  
+    else if (this->type == 3) return "start";  
 }
 
 Transition *State::getTransition(char readSym)
@@ -56,4 +64,14 @@ bool State::operator==(State const &other)
     return this->name           ==  other.name              &&
            this->transition_map ==  other.transition_map    &&
            this->type           ==  other.type  ;
+}
+
+std::ostream& operator<<(std::ostream& strm, State const& state)
+{
+    strm << "State Name: " <<  state.name << "\n" << "State Type: " << state.getStringType() << "\n";
+    for (auto const& [key, trans] : transition_map)
+    {
+      strm << "\t" << trans << "\n";
+    }
+    return strm;
 }
