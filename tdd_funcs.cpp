@@ -54,4 +54,7 @@ void assertEquals(  std::string expected,
     }
 }
 
-void startTestGroup(std::string name);
+void startTestGroup(std::string name)
+{
+    std::cout << "--------------" << name << "--------------" << std::endl;
+}
