@@ -56,7 +56,7 @@ bool TM::addTransition(std::string stateName, char readSym, char writeSym, Direc
 // Run the TM on the input string and return the resulting tape output string
 std::string TM::run(std::string input)
 {
-    State *s = startState;
+    State* s = startState;
     int i = 0; // index for tape head
 
     if (s == nullptr)
@@ -72,7 +72,7 @@ std::string TM::run(std::string input)
     {
         char c = input.at(i);
 
-        Transition *trans = s->getTransition(c);
+        Transition const* trans = s->getTransition(c);
         input[i] = trans->getWrite();        // Write the symbol to the tape
         trans->getDirection() == 0 ? i-- : i++; // Move the position i according to the transition function
         s = this->state_map.at(trans->getNextState()); // Switch to the next state
@@ -120,7 +120,7 @@ bool TM::accepts(std::string input)
     {
         char c = input.at(i);
 
-        Transition *trans = s->getTransition(c);
+        Transition const* trans = s->getTransition(c);
         input.at(i) = trans->getWrite();        // Write the symbol to the tape
         trans->getDirection() == 0 ? i-- : i++; // Move the position i according to the transition function
         s = this->state_map.at(trans->getNextState());              // Switch to the next state
