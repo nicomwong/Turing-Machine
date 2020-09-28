@@ -178,13 +178,13 @@ bool TM::operator==(TM const& rhs)
 
 friend std::ostream& operator<<(std::ostream& strm, TM const& tm)
 {
-    strm << "Start State: " << tm -> startState.getName() << "\n"
+    strm << "Start State: " << tm -> startState.getName() << "\n";
     for (auto const& [stateName, stateObject] : state_map)
     {
-      strm << "\t" << "State Name: " <<  stateName << "\n" << "\t" << "State Type: " << state.getStringType() << "\n"
+      strm << "\t" << "State Name: " <<  stateName << "\n" << "\t" << "State Type: " << state.getStringType() << "\n";
       for (auto const& [readsym, trans] : state -> trans_map)
       {
-        strm << "\t\t" << "(" << readsym << " -> " << trans.getWrite() << ", " << trans.getDirection() << ", " << trans.getNextState();
+        strm << "\t\t" << trans << "\n";
       }
     } 
     return strm;  
