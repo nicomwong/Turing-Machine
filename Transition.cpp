@@ -35,7 +35,8 @@ std::string Transition::getNextState() const
 /* Overloaded Operators */
 bool Transition::operator==(Transition const& other) const
 {
-    return  this->writeSym      ==  other.writeSym  &&
+    return  this->readSym       ==  other.readSym   &&
+            this->writeSym      ==  other.writeSym  &&
             this->direction     ==  other.direction &&
             this->nextStateName ==  other.nextStateName ;
 }
