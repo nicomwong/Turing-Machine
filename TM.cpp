@@ -182,8 +182,8 @@ std::ostream& operator<<(std::ostream& strm, TM const& tm)
     for (auto const& [stateName, statePtr] : tm.state_map)
     {
         strm <<   "\t" << "State Name: " << stateName << std::endl << 
-                    "\t" << "State Type: " << statePtr.getStringType() << std::endl;
-        for (auto const& [readSym, trans] : statePtr->transition_map)
+                    "\t" << "State Type: " << statePtr->getStringType() << std::endl;
+        for (auto const& [readSym, trans] : statePtr->getTransitionMap() )
         {
             strm << "\t\t" << trans << std::endl;
         }
