@@ -176,16 +176,17 @@ bool TM::operator==(TM const& rhs)
     return true;
 }
 
-friend std::ostream& operator<<(std::ostream& strm, TM const& tm)
+std::ostream& operator<<(std::ostream& strm, TM const& tm)
 {
-    strm << "Start State: " << tm -> startState.getName() << "\n";
-    for (auto const& [stateName, stateObject] : state_map)
+    strm << "Start State: " << tm.startState->getName() << std::endl;;
+    for (auto const& [stateName, statePtr] : tm.state_map)
     {
-      strm << "\t" << "State Name: " <<  stateName << "\n" << "\t" << "State Type: " << state.getStringType() << "\n";
-      for (auto const& [readsym, trans] : state -> trans_map)
-      {
-        strm << "\t\t" << trans << "\n";
-      }
+        strm <<   "\t" << "State Name: " << stateName << std::endl << 
+                    "\t" << "State Type: " << statePtr.getStringType() << std::endl;
+        for (auto const& [readSym, trans] : statePtr->transition_map)
+        {
+            strm << "\t\t" << trans << std::endl;
+        }
     } 
     return strm;  
 }
