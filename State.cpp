@@ -9,17 +9,17 @@ State::State(std::string name, StateType type) : name(name), type(type)
 
 /* Getter Member Functions */
 
-std::string State::getName()
+std::string State::getName() const
 {
     return this->name;
 }
 
-StateType State::getType()
+StateType State::getType() const
 {
     return this->type;
 }   
 
-std::string State::getStringType() 
+std::string State::getStringType() const
 {  
     if (this->type == 0) return "normal"; 
     else if (this->type == 1) return "accept";  
@@ -27,7 +27,7 @@ std::string State::getStringType()
     else if (this->type == 3) return "start";  
 }
 
-Transition *State::getTransition(char readSym)
+Transition const* State::getTransition(char readSym) const
 {
     if (transition_map.find(readSym) == transition_map.end())
     {
@@ -37,16 +37,16 @@ Transition *State::getTransition(char readSym)
 
     else
     {
-        return &transition_map[readSym];
+        return &transition_map.at(readSym);
     }
 }
 
-bool State::isAccepting()
+bool State::isAccepting() const
 {
     return this->type == acceptStateType;
 }
 
-bool State::isRejecting()
+bool State::isRejecting() const
 {
     return this->type == rejectStateType;
 }
@@ -59,7 +59,7 @@ void State::addTransition(char readSym, char writeSym, Direction dir, std::strin
     transition_map[readSym] = t;
 }
 
-bool State::operator==(State const &other)
+bool State::operator==(State const &other) const
 {
     return this->name           ==  other.name              &&
            this->transition_map ==  other.transition_map    &&

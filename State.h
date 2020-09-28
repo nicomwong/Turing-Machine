@@ -20,19 +20,19 @@ public:
     State(std::string name, StateType type); // Parameterized Constructor
 
     /* Getter Member Functions */
-    std::string getName();
-    StateType getType();  
-    std::string getStringType();
-    Transition *getTransition(char readSym);
+    std::string getName() const;
+    StateType getType() const;
+    std::string getStringType() const;
+    Transition const* getTransition(char readSym) const;
 
-    bool isAccepting();
-    bool isRejecting();
+    bool isAccepting() const;
+    bool isRejecting() const;
 
     /* Setter Member Functions */
     void addTransition(char readSym, char writeSym, Direction dir, std::string nextStateName);
 
     /* Overloaded Operators */
-    bool operator==(State const &other);
+    bool operator==(State const &other) const;
 
     friend std::ostream& operator<<(std::ostream& strm, State const& state);
 
