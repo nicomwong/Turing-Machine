@@ -167,7 +167,7 @@ bool TM::operator==(TM const& rhs)
 
     for (auto const& [stateName, statePtr] : this->state_map)
     {
-        if (rhs.state_map.count(stateName) == false || ( *statePtr == *rhs.state_map.at(stateName) ) == false)
+        if (rhs.state_map.count(stateName) == 0 || (*statePtr != *rhs.state_map.at(stateName) ) )
         {
             return false;
         }
