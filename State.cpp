@@ -21,10 +21,11 @@ StateType State::getType() const
 
 std::string State::getStringType() const
 {  
-    if (this->type == 0) return "normal"; 
-    else if (this->type == 1) return "accept";  
-    else if (this->type == 2) return "reject";  
-    else if (this->type == 3) return "start";  
+    if      (this->type == 0)   return "normal"; 
+    else if (this->type == 1)   return "accept";  
+    else if (this->type == 2)   return "reject";  
+    else if (this->type == 3)   return "start"; 
+    else                        return "invalid";
 }
 
 Transition const* State::getTransition(char readSym) const
