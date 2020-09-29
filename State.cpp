@@ -62,7 +62,7 @@ bool State::isRejecting() const
 void State::addTransition(char readSym, char writeSym, Direction dir, std::string nextStateName)
 {
     Transition t(readSym, writeSym, dir, nextStateName);
-    transition_map[readSym] = t;
+    transition_map.insert( {readSym, t} );
 }
 
 bool State::operator==(State const &other) const
@@ -74,11 +74,13 @@ bool State::operator==(State const &other) const
 
 std::ostream& operator<<(std::ostream& strm, State const& state)
 {
-    strm << "State Name: " << state.name << std::endl <<
-            "State Type: " << state.getStringType() << std::endl;
+    strm << state.name << ", " << state.getStringType() << "\t";
+
     for (auto const& [readSym, trans] : state.transition_map)
     {
-      strm << "\t" << trans << std::endl;
+        strm << trans << " ";
     }
+    strm << std::endl;
+
     return strm;
 }
