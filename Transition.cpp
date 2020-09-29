@@ -39,7 +39,7 @@ bool Transition::operator==(Transition const& other) const
 
 std::ostream& operator<<(std::ostream& strm, Transition const& trans)
 {
-    return strm << "(" << trans.readSym << " -> " << trans.writeSym << ", " << trans.direction << ", " << trans.nextStateName;
+    return strm << "(" << trans.readSym << " -> " << trans.writeSym << ", " << trans.direction << ", " << trans.nextStateName << ")";
 }
 
 std::ostream& operator<<(std::ostream& strm, Direction const& d)
