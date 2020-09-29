@@ -11,11 +11,7 @@ enum Direction
     dirR = 1
 };
 
-std::ostream& operator<<(std::ostream& strm, Direction const& d)
-{
-    char dir = d == Direction::dirL ? 'L' : 'R';
-    return strm << dir;
-}
+std::ostream& operator<<(std::ostream& strm, Direction const& d);
 
 class State; // forward declaration
 

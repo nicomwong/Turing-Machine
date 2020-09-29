@@ -1,8 +1,4 @@
 // Transition.cpp
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
 #include "Transition.h"
 
 /* Parameterized Constructor */
@@ -44,4 +40,10 @@ bool Transition::operator==(Transition const& other) const
 std::ostream& operator<<(std::ostream& strm, Transition const& trans)
 {
     return strm << "(" << trans.readSym << " -> " << trans.writeSym << ", " << trans.direction << ", " << trans.nextStateName;
+}
+
+std::ostream& operator<<(std::ostream& strm, Direction const& d)
+{
+    char dir = d == Direction::dirL ? 'L' : 'R';
+    return strm << dir;
 }
