@@ -71,7 +71,6 @@ std::ostream& operator<<(std::ostream& strm, State const& state)
     {
         strm << trans << " ";
     }
-    strm << std::endl;
 
     return strm;
 }
