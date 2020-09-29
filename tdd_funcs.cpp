@@ -24,7 +24,6 @@ void assertEquals(  State const& expected,
     {
         std::cout <<    "  PASSED: " << message << std::endl;
     }
-
     else
     {
         std::cout <<    "  FAILED: " << message <<  std::endl <<
@@ -37,7 +36,21 @@ void assertEquals(  State const& expected,
 
 void assertEquals(  TM const& expected,
                     TM const& actual,
-                    std::string message = "");
+                    std::string message = "")
+{
+    if (expected == actual)
+    {
+        std::cout << "PASSED: " << message << std::endl;
+    }
+    else
+    {
+        std::cout <<    "  FAILED: " << message <<  std::endl <<
+                        "      Expected: " <<       std::endl <<
+                        expected <<                 std::endl <<
+                        "      Actual: " <<         std::endl <<
+                        actual <<                   std::endl;
+    }
+}
 
 void assertEquals(  std::string expected,
                     std::string actual,
