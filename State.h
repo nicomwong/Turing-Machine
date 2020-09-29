@@ -2,6 +2,7 @@
 #define STATE_H
 
 #include <unordered_map>
+#include <ostream>
 #include <string>
 
 #include "Transition.h"
@@ -14,6 +15,8 @@ enum StateType
     startStateType = 3,
 };
 
+std::ostream& operator<<(std::ostream& strm, StateType const& type);
+
 class State
 {
 public:
@@ -22,7 +25,6 @@ public:
     /* Getter Member Functions */
     std::string getName() const;
     StateType getType() const;
-    std::string getStringType() const;
     Transition const* getTransition(char readSym) const;
     std::unordered_map<char, Transition> getTransitionMap() const;
 
