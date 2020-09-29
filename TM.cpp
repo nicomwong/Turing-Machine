@@ -158,7 +158,7 @@ bool TM::accepts(std::string input)
     }
 }
 
-bool TM::operator==(TM const& rhs)
+bool TM::operator==(TM const& rhs) const
 {
     if (this->state_map.size() != rhs.state_map.size())
     {

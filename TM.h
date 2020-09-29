@@ -21,7 +21,7 @@ public:
     bool accepts(std::string input); // Runs the TM on the input and returns whether it was accepted
 
     /* Overloaded Operators */
-    bool operator==(TM const& rhs);
+    bool operator==(TM const& rhs) const;
 
     friend std::ostream& operator<<(std::ostream& strm, TM const& tm);
 
