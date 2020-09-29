@@ -19,15 +19,6 @@ StateType State::getType() const
     return this->type;
 }   
 
-std::string State::getStringType() const
-{  
-    if      (this->type == 0)   return "normal"; 
-    else if (this->type == 1)   return "accept";  
-    else if (this->type == 2)   return "reject";  
-    else if (this->type == 3)   return "start"; 
-    else                        return "invalid";
-}
-
 Transition const* State::getTransition(char readSym) const
 {
     if (transition_map.find(readSym) == transition_map.end())
@@ -74,13 +65,30 @@ bool State::operator==(State const &other) const
 
 std::ostream& operator<<(std::ostream& strm, State const& state)
 {
-    strm << state.name << ", " << state.getStringType() << "\t";
+    strm << state.name << ", " << state.type << "\t";
 
     for (auto const& [readSym, trans] : state.transition_map)
     {
         strm << trans << " ";
     }
     strm << std::endl;
+
+    return strm;
+}
+
+std::ostream& operator<<(std::ostream& strm, StateType const& type)
+{
+    std::string str("");
+
+    switch (type)
+    {
+    case 0:     str = "normal"; 
+    case 1:     str = "accept";  
+    case 2:     str = "reject";  
+    case 3:     str = "start"; 
+    default:    str = "invalid";
+    }
+    strm << str;
 
     return strm;
 }
