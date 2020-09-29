@@ -67,8 +67,8 @@ void State::addTransition(char readSym, char writeSym, Direction dir, std::strin
 bool State::operator==(State const &other) const
 {
     return this->name           ==  other.name              &&
-           this->transition_map ==  other.transition_map    &&
-           this->type           ==  other.type  ;
+           this->type           ==  other.type              &&
+           this->transition_map ==  other.transition_map  ;
 }
 
 std::ostream& operator<<(std::ostream& strm, State const& state)
