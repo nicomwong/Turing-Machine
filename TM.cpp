@@ -178,7 +178,7 @@ bool TM::operator==(TM const& rhs) const
 
 std::ostream& operator<<(std::ostream& strm, TM const& tm)
 {
-    strm << "Start State: " << tm.startState->getName() << std::endl;;
+    strm << "Start State: " << tm.startState->getName() << std::endl;
     for (auto const& [stateName, statePtr] : tm.state_map)
     {
         strm <<   "\t" << "State Name: " << stateName << std::endl << 
