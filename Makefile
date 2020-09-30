@@ -4,8 +4,10 @@ CXXFLAGS = -std=c++17 -Wall -Wno-uninitialized
 
 BINARIES = TMParserTest
 
+test: TMParserTest
+	./$^
 
-test: TMParserTest.o State.o Transition.o
+TMParserTest: TMParserTest.o State.o Transition.o
 	${CXX} $^ -o $@
 
 TMParserTest.o: TMParserTest.cpp
