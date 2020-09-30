@@ -19,8 +19,8 @@ void assertEquals(  T const& actual,
     }
 }
 
-void assertEquals(  char actual,
-                    char expected,
+void assertEquals(  std::string actual,
+                    std::string expected,
                     std::string message = "")
 {
     if (expected == actual)
@@ -35,8 +35,8 @@ void assertEquals(  char actual,
     }
 }
 
-void assertEquals(  std::string actual,
-                    std::string expected,
+void assertEquals(  char actual,
+                    char expected,
                     std::string message = "")
 {
     if (expected == actual)
