@@ -81,11 +81,11 @@ std::ostream& operator<<(std::ostream& strm, StateType const& type)
 
     switch (type)
     {
-    case 0:     str = "normal"; 
-    case 1:     str = "accept";  
-    case 2:     str = "reject";  
-    case 3:     str = "start"; 
-    default:    str = "invalid";
+    case 0:     str = "normal";     break;
+    case 1:     str = "accept";     break;
+    case 2:     str = "reject";     break;
+    case 3:     str = "start";      break;
+    default:    str = "invalid";    break;
     }
     strm << str;
 
