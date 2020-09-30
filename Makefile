@@ -7,8 +7,11 @@ BINARIES = TMParserTest
 test: TMParserTest
 	./$^
 
-TMParserTest: TMParserTest.o State.o Transition.o
+TMParserTest: TMParserTest.o TM.o State.o Transition.o
 	${CXX} $^ -o $@
+
+TM.o: TM.cpp
+	${CXX} ${CXXFLAGS} -c $^
 
 TMParserTest.o: TMParserTest.cpp
 	${CXX} ${CXXFLAGS} -c $^
