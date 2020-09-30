@@ -6,20 +6,17 @@
 
 #include "TM_Parser.h"
 
-void assertEquals(  Transition const& expected,
-                    Transition const& actual,
-                    std::string message = "");
-
-void assertEquals(  State const& expected,
-                    State const& actual,
-                    std::string message = "");
-
-void assertEquals(  TM const& expected,
-                    TM const& actual,
+template <class T>
+void assertEquals(  T const& expected,
+                    T const& actual,
                     std::string message = "");
 
 void assertEquals(  std::string expected,
                     std::string actual,
+                    std::string message = "");
+                    
+void assertEquals(  char expected,
+                    char actual,
                     std::string message = "");
 
 void startTestGroup(std::string name);
