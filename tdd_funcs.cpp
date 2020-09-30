@@ -3,7 +3,7 @@
 template <class T>
 void assertEquals(  T const& actual,
                     T const& expected,
-                    std::string message = "")
+                    std::string message)
 {
     if (expected == actual)
     {
@@ -21,7 +21,7 @@ void assertEquals(  T const& actual,
 
 void assertEquals(  std::string actual,
                     std::string expected,
-                    std::string message = "")
+                    std::string message)
 {
     if (expected == actual)
     {
@@ -37,7 +37,7 @@ void assertEquals(  std::string actual,
 
 void assertEquals(  char actual,
                     char expected,
-                    std::string message = "")
+                    std::string message)
 {
     if (expected == actual)
     {
