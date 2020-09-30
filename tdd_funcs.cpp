@@ -1,8 +1,8 @@
 #include "tdd_funcs.h"
 
 template <class T>
-void assertEquals(  T const& expected,
-                    T const& actual,
+void assertEquals(  T const& actual,
+                    T const& expected,
                     std::string message = "")
 {
     if (expected == actual)
@@ -19,8 +19,8 @@ void assertEquals(  T const& expected,
     }
 }
 
-void assertEquals(  char expected,
-                    char actual,
+void assertEquals(  char actual,
+                    char expected,
                     std::string message = "")
 {
     if (expected == actual)
@@ -35,8 +35,8 @@ void assertEquals(  char expected,
     }
 }
 
-void assertEquals(  std::string expected,
-                    std::string actual,
+void assertEquals(  std::string actual,
+                    std::string expected,
                     std::string message = "")
 {
     if (expected == actual)
