@@ -7,13 +7,19 @@ BINARIES = TMParserTest
 test: TMParserTest
 	./$^
 
-TMParserTest: TMParserTest.o TM.o State.o Transition.o
+TMParserTest: tdd_funcs.o TMParserTest.o TM_Parser.o TM.o State.o Transition.o
 	${CXX} $^ -o $@
 
-TM.o: TM.cpp
+tdd_funcs.o: tdd_funcs.cpp
 	${CXX} ${CXXFLAGS} -c $^
 
 TMParserTest.o: TMParserTest.cpp
+	${CXX} ${CXXFLAGS} -c $^
+
+TM_Parser.o: TM_Parser.cpp
+	${CXX} ${CXXFLAGS} -c $^
+
+TM.o: TM.cpp
 	${CXX} ${CXXFLAGS} -c $^
 
 State.o: State.cpp
