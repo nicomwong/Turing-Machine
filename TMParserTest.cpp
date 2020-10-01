@@ -1,15 +1,34 @@
+// TMParserTest.cpp
+
 #include <iostream>
 
-#include "State.h"
+#include "TM_Parser.h"
+#include "tdd_funcs.h"
+
+void testTransition();
+void testTransitionGetters();
+
+void testState();
+void testStateGetters();
 
 int main()
 {
-    State s("q0", StateType::startStateType);
-    s.addTransition('0', '0', Direction::dirL, "q1");
-    s.addTransition('1', '1', Direction::dirR, "q2");
-    s.addTransition('2', '2', Direction::dirL, "q3");
-    s.addTransition('3', '3', Direction::dirR, "q4");
-
-    std::cout << s << std::endl;
+    testTransition();
     return 0;
+}
+
+void testTransition()
+{
+    testTransitionGetters();
+}
+
+void testTransitionGetters()
+{
+    startTestGroup("Test Transition Getters");
+
+    Transition t('a', 'b', Direction::dirL, "q1");
+    assertEquals(t.getRead(), 'a', "getRead()");
+    assertEquals(t.getWrite(), 'b', "getWrite()");
+    assertEquals(t.getDirection(), Direction::dirL, "getDirection()");
+    assertEquals(t.getNextState(), "q1", "getNextState()");
 }
