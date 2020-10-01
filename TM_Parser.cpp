@@ -1,5 +1,6 @@
 // TM_Parser.cpp
 
+#include <sstream>
 #include <iostream>
 #include <fstream>
 #include <regex>
@@ -121,7 +122,9 @@ TM* TM_Parser::parse(std::string fileName)
         // Else (if no line found with getline), print parse error
         else
         {
-            return this->printParseError(my_istream.tellg(), "Failed to find line " + i);
+            std::ostringstream strm;
+            strm << i;
+            return this->printParseError(my_istream.tellg(), "Failed to find line " + strm.str() );
         }
     }
     
@@ -176,25 +179,25 @@ TM* TM_Parser::parse(std::string fileName)
             char readSym = m.str(1).at(0);
             if (this->alphabet.count(readSym) == 0)
             {
-                return this->printParseError(my_istream.tellg(), readSym + " is not a valid read symbol in the defined alphabet"); // ** maybe add a wya to print the defined alphabet?
+                return this->printParseError(my_istream.tellg(), std::string(1, readSym) + " is not a valid read symbol in the defined alphabet"); // ** maybe add a wya to print the defined alphabet?
             }
 
             // Get the write symbol from group 2
             char writeSym = m.str(2).at(0);
             if (this->alphabet.count(writeSym) == 0)
             {
-                return this->printParseError(my_istream.tellg(), writeSym + " is not a valid write symbol in the defined alphabet"); // ** maybe add a wya to print the defined alphabet?
+                return this->printParseError(my_istream.tellg(), std::string(1, writeSym) + " is not a valid write symbol in the defined alphabet"); // ** maybe add a wya to print the defined alphabet?
             }
 
             // Get the direction from group 3
-            char dirChar = m.str(3).at(0);
+            std::string dirStr = m.str(3);
             Direction dir;
-            if (dirChar == 'L' | dirChar == 'R')
+            if (dirStr == "L" | dirStr == "R")
             {
-                dir = dirChar == 'L' ? Direction::dirL : Direction::dirR;
+                dir = dirStr == "L" ? Direction::dirL : Direction::dirR;
             } else
             {
-                return this->printParseError(my_istream.tellg(), dirChar + " is not a valid Direction {L, R}");
+                return this->printParseError(my_istream.tellg(), dirStr + " is not a valid Direction {L, R}");
             }
             
             // Get the name of the next state from group 4
