@@ -34,6 +34,21 @@ void assertEquals(  char actual,
     }
 }
 
+void assertTrue(    bool expr,
+                    std::string message)
+{
+    if (expr)
+    {
+        std::cout << "PASSED: " << message << std::endl;
+    }
+    else
+    {
+        std::cout <<    "  FAILED: " << message <<              std::endl <<
+                        "       Expected:   true" <<            std::endl <<
+                        "       Actual:     false" <<           std::endl;
+    }
+}
+
 void startTestGroup(std::string name)
 {
     std::cout << "--------------" << name << "--------------" << std::endl;

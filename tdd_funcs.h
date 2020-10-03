@@ -33,6 +33,9 @@ void assertEquals(  char actual,
                     char expected,
                     std::string message = "");
 
+void assertTrue(    bool expr,
+                    std::string message = "");
+
 void startTestGroup(std::string name);
 
 #endif
