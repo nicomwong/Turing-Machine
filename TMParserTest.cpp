@@ -10,6 +10,7 @@ void testTransitionGetters();
 
 void testState();
 void testStateGetters();
+void testTransitionOperatorEquals();
 
 int main()
 {
@@ -20,6 +21,7 @@ int main()
 void testTransition()
 {
     testTransitionGetters();
+    testTransitionOperatorEquals();
 }
 
 void testTransitionGetters()
@@ -31,4 +33,28 @@ void testTransitionGetters()
     assertEquals(t.getWrite(), 'b', "getWrite()");
     assertEquals(t.getDirection(), Direction::dirL, "getDirection()");
     assertEquals(t.getNextState(), "q1", "getNextState()");
+}
+
+void testTransitionOperatorEquals()
+{
+    startTestGroup("Test Transition Operator ==");
+
+    Transition t1('a', 'b', Direction::dirL, "q1");
+    Transition t2('a', 'b', Direction::dirL, "q1");
+    assertTrue(t1 == t2, "Equivalent");
+
+    Transition t3('a', 'b', Direction::dirL, "q0");
+    assertTrue( !(t1 == t3), "Different nextState");
+
+    Transition t4('a', 'b', Direction::dirR, "q1");
+    assertTrue( !(t1 == t4), "Different direction");
+
+    Transition t5('a', 'c', Direction::dirL, "q0");
+    assertTrue( !(t1 == t5), "Different write");
+
+    Transition t6('b', 'c', Direction::dirL, "q0");
+    assertTrue( !(t1 == t6), "Different read");
+
+    Transition t7('b', 'c', Direction::dirR, "q3");
+    assertTrue( !(t1 == t2), "Different everything");
 }
