@@ -7,10 +7,10 @@
 
 void testTransition();
 void testTransitionGetters();
+void testTransitionOperatorEquals();
 
 void testState();
 void testStateGetters();
-void testTransitionOperatorEquals();
 
 int main()
 {
@@ -30,9 +30,13 @@ void testTransitionGetters()
 
     Transition t('a', 'b', Direction::dirL, "q1");
     assertEquals(t.getRead(), 'a', "getRead()");
+    assertTrue( !(t.getRead() == 'b'), "getRead()");
     assertEquals(t.getWrite(), 'b', "getWrite()");
+    assertTrue( !(t.getWrite() == 'c'), "getWrite()");
     assertEquals(t.getDirection(), Direction::dirL, "getDirection()");
+    assertTrue( !(t.getDirection() == Direction::dirR), "getDirection()");
     assertEquals(t.getNextState(), "q1", "getNextState()");
+    assertTrue( !(t.getNextState() == "q3"), "getNextState()");
 }
 
 void testTransitionOperatorEquals()
