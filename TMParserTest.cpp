@@ -56,5 +56,5 @@ void testTransitionOperatorEquals()
     assertTrue( !(t1 == t6), "Different read");
 
     Transition t7('b', 'c', Direction::dirR, "q3");
-    assertTrue( !(t1 == t2), "Different everything");
+    assertTrue( !(t1 == t7), "Different everything");
 }
