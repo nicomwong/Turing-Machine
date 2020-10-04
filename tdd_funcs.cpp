@@ -51,5 +51,5 @@ void assertTrue(    bool expr,
 
 void startTestGroup(std::string name)
 {
-    std::cout << "--------------" << name << "--------------" << std::endl;
+    std::cout << "-------------- " << name << " --------------" << std::endl;
 }
