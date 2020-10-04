@@ -26,7 +26,6 @@ public:
     std::string getName() const;
     StateType getType() const;
     Transition const* getTransition(char readSym) const;
-    std::unordered_map<char, Transition> getTransitionMap() const;
 
     bool isAccepting() const;
     bool isRejecting() const;

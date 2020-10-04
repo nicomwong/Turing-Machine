@@ -33,11 +33,6 @@ Transition const* State::getTransition(char readSym) const
     }
 }
 
-std::unordered_map<char, Transition> State::getTransitionMap() const
-{
-    return this->transition_map;
-}
-
 bool State::isAccepting() const
 {
     return this->type == acceptStateType;
