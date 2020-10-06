@@ -23,8 +23,42 @@ reject: <state>
 ```
 \
 Run the TM you created with:
+```$ ./TMParser.exe <description text file> <accepts|run> <input>```
+\
+Example 1:
+```
+$ ./TMParser.exe TM_addOneToBinaryNumber.txt run 10110111\
+$ Input: '10110111'   Output: '10111000'
+```
+\
+TM_addOneToBinaryNumber.txt:
+```
+alphabet: {0, 1}
+start: q0
+accept: Accept
+reject: Reject
 
-```./TMParser.exe <description text file> <accepts|run> <input>```
+q0 (0 -> 0, R, q0) (1 -> 1, R, q0) (_ -> _, L, q1)
+q1 (1 -> 0, L, q1) (0 -> 1, R, Accept) (_ -> 1, R, Accept)
+```
+\
+\
+Example 2:
+```
+$ ./TMParser.exe TM_acceptIfEvenBinary.txt accept 10010101
+$ '10010101' is accepted by the machine
+```
+\
+TM_acceptIfEvenBinary.txt:
+```
+alphabet: {0, 1}
+start: q0
+accept: Accept
+reject: Reject
+
+q0 (0 -> 0, R, q0) (1 -> 1, R, q0) (_ -> _, L, q1)
+q1 (0 -> 0, R, Accept) (1 -> 1, R, Reject)
+```
 \
 \
 \
