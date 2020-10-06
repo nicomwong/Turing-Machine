@@ -10,7 +10,7 @@ Future goals include...
 
 
 Format for TM description text file:
-`
+```
 alphabet: '{'<char> (',' <char>)*'}'
 start: <state>
 accept: <state>
@@ -19,10 +19,10 @@ reject: <state>
 <state> ('('<char> '->' <char>',' ('L'|'R')',' <state>')')+
 ...
 
-`
+```
 
 Run the TM you created with:
-`./TMParser.exe <description text file> <accepts|run> <input>`
+```./TMParser.exe <description text file> <accepts|run> <input>```
 
 
 
