@@ -1,7 +1,7 @@
 # Turing-Machine
 This is a personal project, inspired by UCSB's CS 138's "mentor" tool made for describing and simulating finite automata and pushdown automata, but it did not support Turing Machines.
 
-The goal is to create a virtual structure that represents a (decisive) Turing Machine using OOP principles. The behavior of the Turing Machine itself is user-defined through a strictly-formatted text file, and it is parsed using the TM_Parser.
+The goal is to create a virtual structure that represents a (decisive) Turing Machine using OOP principles. The behavior of the Turing Machine itself is user-defined through a strictly-formatted text file.
 
 Future goals include...
   - The implementation of a physical Turing Machine using 3D printing, an Arduino, and multicolor LEDs to represent the tape symbols.
