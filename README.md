@@ -8,7 +8,7 @@ Future goals include...
   - A way to generate the node graph of the Turing Machine as it was defined by the user
   - An interactive web-based implementation
 \
-\
+
 Format for TM description text file:
 ```
 alphabet: '{'<char> (',' <char>)*'}'
