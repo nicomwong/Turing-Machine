@@ -7,8 +7,8 @@ Future goals include...
   - The implementation of a physical Turing Machine using 3D printing, an Arduino, and multicolor LEDs to represent the tape symbols.
   - A way to generate the node graph of the Turing Machine as it was defined by the user
   - An interactive web-based implementation
-
-
+\
+\
 Format for TM description text file:
 ```
 alphabet: '{'<char> (',' <char>)*'}'
@@ -20,11 +20,13 @@ reject: <state>
 ...
 
 ```
-
+\
+\
 Run the TM you created with:
 
 ```./TMParser.exe <description text file> <accepts|run> <input>```
-
-
-
+\
+\
+\
+\
 *Created by Bill Zhang and Nico Wong.
