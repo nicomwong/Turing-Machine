@@ -9,7 +9,6 @@ Future goals include...
   - An interactive web-based implementation
   
 \
-\
 Format for TM description text file:
 ```
 alphabet: '{'<char> (',' <char>)*'}'
@@ -19,11 +18,12 @@ reject: <state>
 
 <state> ('('<char> '->' <char>',' ('L'|'R')',' <state>')')+
 ...
-
 ```
 \
 Run the TM you created with:
-```$ ./TMParser.exe <description text file> <accepts|run> <input>```
+```
+$ ./TMParser.exe <description text file> <accepts|run> <input>
+```
 \
 Example 1:
 ```
@@ -42,14 +42,13 @@ q0 (0 -> 0, R, q0) (1 -> 1, R, q0) (_ -> _, L, q1)
 q1 (1 -> 0, L, q1) (0 -> 1, R, Accept) (_ -> 1, R, Accept)
 ```
 \
-\
 Example 2:
 ```
 $ ./TMParser.exe TM_acceptIfEvenBinary.txt accept 10010101
 $ '10010101' is accepted by the machine
 ```
 \
-TM_acceptIfEvenBinary.txt:
+TM_acceptIfEven.txt:
 ```
 alphabet: {0, 1}
 start: q0
