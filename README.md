@@ -4,9 +4,9 @@ This is a personal project, inspired by UCSB's CS 138's "mentor" tool made for d
 The goal is to create a virtual structure that represents a Turing Machine using OOP principles. The behavior of the Turing Machine itself is user-defined through a strictly-formatted text file, and it is parsed using the TM_Parser.
 
 Future goals include...
-  1. The implementation of a physical Turing Machine using 3D printing, an Arduino, and multicolor LEDs to represent the tape symbols.
-  2. A way to generate the node graph of the Turing Machine as it was defined by the user
-  3. An interactive web-based implementation
+  - The implementation of a physical Turing Machine using 3D printing, an Arduino, and multicolor LEDs to represent the tape symbols.
+  - A way to generate the node graph of the Turing Machine as it was defined by the user
+  - An interactive web-based implementation
 
 
 Format for TM description text file:
