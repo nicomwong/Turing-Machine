@@ -2,12 +2,6 @@
 This is a personal project, inspired by UCSB's CS 138's "mentor" tool made for describing and simulating finite automata and pushdown automata, but it did not support Turing Machines.
 
 The goal is to create a virtual structure that represents a (decisive) Turing Machine using OOP principles. The behavior of the Turing Machine itself is user-defined through a strictly-formatted text file.
-
-Future goals include...
-  - The implementation of a physical Turing Machine using 3D printing, an Arduino, and multicolor LEDs to represent the tape symbols.
-  - A way to generate the node graph of the Turing Machine as it was defined by the user
-  - An interactive web-based implementation
-  
 \
 Format for TM description text file:
 ```
@@ -58,6 +52,11 @@ reject: Reject
 q0 (0 -> 0, R, q0) (1 -> 1, R, q0) (_ -> _, L, q1)
 q1 (0 -> 0, R, Accept) (1 -> 1, R, Reject)
 ```
+\
+Future goals include...
+  - The implementation of a physical Turing Machine using 3D printing, an Arduino, and multicolor LEDs to represent the tape symbols.
+  - A way to generate the node graph of the Turing Machine as it was defined by the user
+  - An interactive web-based implementation
 \
 \
 \
