@@ -20,10 +20,6 @@ reject: <state>
 ```
 \
 Example 1:
-```
-$ ./TMParser.exe TM_addOneToBinaryNumber.txt run 10110111\
-$ Input: '10110111'   Output: '10111000'
-```
 \
 TM_addOneToBinaryNumber.txt:
 ```
@@ -36,11 +32,12 @@ q0 (0 -> 0, R, q0) (1 -> 1, R, q0) (_ -> _, L, q1)
 q1 (1 -> 0, L, q1) (0 -> 1, R, Accept) (_ -> 1, R, Accept)
 ```
 \
+```
+$ ./TMParser.exe TM_addOneToBinaryNumber.txt run 10110111\
+$ Input: '10110111'   Output: '10111000'
+```
+\
 Example 2:
-```
-$ ./TMParser.exe TM_acceptIfEvenBinary.txt accept 10010101
-$ '10010101' is accepted by the machine
-```
 \
 TM_acceptIfEven.txt:
 ```
@@ -51,6 +48,11 @@ reject: Reject
 
 q0 (0 -> 0, R, q0) (1 -> 1, R, q0) (_ -> _, L, q1)
 q1 (0 -> 0, R, Accept) (1 -> 1, R, Reject)
+```
+\
+```
+$ ./TMParser.exe TM_acceptIfEvenBinary.txt accept 10010101
+$ '10010101' is accepted by the machine
 ```
 \
 Future goals include...
