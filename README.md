@@ -3,11 +3,11 @@ This is a personal project, inspired by UCSB's CS 138's "mentor" tool made for d
 
 The goal is to create a virtual structure that represents a (decisive) Turing Machine using OOP principles. The behavior of the Turing Machine itself is user-defined through a strictly-formatted text file.
 
-Future goals include...
-  - The implementation of a physical Turing Machine using 3D printing, an Arduino, and multicolor LEDs to represent the tape symbols.
-  - A way to generate the node graph of the Turing Machine as it was defined by the user
-  - An interactive web-based implementation
-\
+To use it, perform the following steps:
+1. Run `make` to generate the `TMParser.exe` executable
+2. Write a TM description text file that describes the Turing Machine states and transitions, following the format below
+3. Simulate your TM by running `./TMParser.exe <description text file> <accepts|run> <input>`
+
 Format for TM description text file:
 ```
 alphabet: '{'<char> (',' <char>)*'}'
@@ -17,11 +17,6 @@ reject: <state>
 
 <state> ('('<char> '->' <char>',' ('L'|'R')',' <state>')')+
 ...
-```
-\
-Run the TM you created with:
-```
-$ ./TMParser.exe <description text file> <accepts|run> <input>
 ```
 \
 Example 1:
@@ -58,7 +53,10 @@ q0 (0 -> 0, R, q0) (1 -> 1, R, q0) (_ -> _, L, q1)
 q1 (0 -> 0, R, Accept) (1 -> 1, R, Reject)
 ```
 \
+Future goals include...
+  - The implementation of a physical Turing Machine using 3D printing, an Arduino, and multicolor LEDs to represent the tape symbols.
+  - A way to generate the node graph of the Turing Machine as it was defined by the user
+  - An interactive web-based implementation
 \
-\
-\
+
 *Created by Bill Zhang and Nico Wong.
